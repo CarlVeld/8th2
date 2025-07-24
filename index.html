@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berry Bitty Adventures Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #ff69b4;  /* Bright Pink */
+            --secondary: #c8e6c9; /* Matcha Green */
+            --accent: #4caf50;    /* Leafy Green */
+            --background: #fce4ec; /* Light Pink */
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, var(--background) 0%, #fff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            color: #333;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255,112,166,0.2);
+            width: 100%;
+            max-width: 600px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .date {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .counter {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+            font-weight: bold;
+        }
+
+        .photo-container {
+            margin: 2rem 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .photo-placeholder {
+            height: 300px;
+            background: linear-gradient(45deg, #fff0f0, #f0f8ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            opacity: 0;
+            animation: float 5s ease-in infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-open {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 1.5rem auto 0;
+        }
+
+        .btn-open:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,112,166,0.4);
+        }
+
+        .hidden-letter {
+            display: none;
+            padding: 1.5rem;
+            background-color: #fff9fb;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            margin-top: 1rem;
+            transform: scale(0.8);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .letter-visible {
+            display: block;
+            transform: scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="hearts" id="hearts-container"></div>
+        
+        <div class="header">
+            <h1>Happy 8th Monthsarry!</h1>
+            <div class="date">I loveee youuu babyy!</div>
+            
+            <img src="24.png" alt="Berry Bitty Adventure" class="header-photo" style="max-width:100%; border-radius:10px;"/>
+        </div>
+        
+        <div class="counter">
+            <p>8 Months | Next in 31 Days | Sweet Love!</p>
+        </div>
+        
+        <button class="btn-open" onclick="openLetter()">Secrettt HAHAHA</button>
+        
+        <div class="hidden-letter" id="letterContent">
+            <p>Dear Baby kong maganda,</p>
+            <p>Happy 8th Month Anniversary! These past months have been a beautiful journey filled with laughter and joy. You’ve brought so much happiness into my life, and I cherish every moment we share.</p>
+            <p>From our sweet adventures to cozy moments, you make my world a better place. Thank you for being my partner in love and fun.</p>
+            <p>more months and memories together! I love you more than words can express.</p>
+            <p>Forever yours,</p>
+            <p>Carl Nathan Palacios</p>
+            
+            <div class="photo-container">
+                <img src="2.png" alt="Berry Bitty Adventures" style="width:100%; height:300px; object-fit:cover;"/>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function openLetter() {
+            const letter = document.getElementById('letterContent');
+            const btn = document.querySelector('.btn-open');
+            
+            if (letter.classList.contains('letter-visible')) {
+                letter.classList.remove('letter-visible');
+                btn.textContent = 'Open My Letter';
+                stopHearts();
+            } else {
+                letter.classList.add('letter-visible');
+                btn.textContent = 'Close Letter';
+                createHearts();
+            }
+        }
+        
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < 30; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '🍓'; // Strawberry emoji for a playful touch
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px'; // Adjusted font size for visibility
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(heart);
+            }
+        }
+        
+        function stopHearts() {
+            const container = document.getElementById('hearts-container');
+            container.innerHTML = '';
+            const letter = document.getElementById('letterContent');
+            letter.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                letter.style.transform = 'scale(0.8)';
+            }, 100);
+        }
+        
+        // Display date dynamically
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            document.querySelector('.date').textContent = today.toLocaleDateString('en-US', options);
+        });
+    </script>
+</body>
+</html>
